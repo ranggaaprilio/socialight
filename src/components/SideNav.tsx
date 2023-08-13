@@ -17,10 +17,10 @@ export function SideNav() {
           </li>
         )}
         {/* render the log out button if the user is logged in */}
-        {user === null ? (
-          <button onClick={() => void signIn()}>Log in</button>
-        ) : (
+        {user != null ? (
           <button onClick={() => void signOut()}>Log Out</button>
+        ) : (
+          <button onClick={() => void signIn()}>Log In</button>
         )}
       </ul>
     </nav>
