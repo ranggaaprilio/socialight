@@ -1,5 +1,7 @@
 {
     "cSpell.words": [
         "Socia"
-    ]
+    ],
+    //auto format all files on save
+    "editor.formatOnSave": true,
 }

@@ -13,13 +13,14 @@ datasource db {
 
 model Tweet {
     id        String   @id @default(uuid())
-    createdAt DateTime @default(now())
-    content   String
     userId    String
+    content   String
+    createdAt DateTime @default(now())
 
-    user User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-    like Like[]
+    user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+    likes Like[]
 
+    @@unique([createdAt, id])
     @@index([userId])
 }
 
@@ -27,11 +28,11 @@ model Like {
     userId  String
     tweetId String
     user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-    tweet   Tweet  @relation(fields: [tweetId], references: [id], onDelete: Cascade)
+    Tweet   Tweet  @relation(fields: [tweetId], references: [id], onDelete: Cascade)
 
     @@id([userId, tweetId])
-    @@index([tweetId])
     @@index([userId])
+    @@index([tweetId])
 }
 
 // Necessary for Next auth
@@ -72,11 +73,12 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
-    //non next auth
-    tweets        Tweet[]
-    likes         Like[]
-    followers     User[]    @relation(name: "Followers")
-    follows       User[]    @relation(name: "Followers")
+
+    // Non-Next Auth
+    tweets    Tweet[]
+    likes     Like[]
+    followers User[]  @relation(name: "Followers")
+    follows   User[]  @relation(name: "Followers")
 }
 
 model VerificationToken {
