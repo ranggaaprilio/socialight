@@ -15,7 +15,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={session}>
       <Head>
-        <title>Twitter Clone</title>
+        <title>Sosialight</title>
         <meta
           name="description"
           content="This is a Twitter clone by Web Dev Simplified"
