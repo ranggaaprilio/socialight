@@ -1,7 +1,14 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { VscAccount, VscHome, VscSignIn, VscSignOut } from "react-icons/vsc";
+import {
+  VscAccount,
+  VscHome,
+  VscSignIn,
+  VscSignOut,
+  VscPerson,
+} from "react-icons/vsc";
 import { IconHoverEffect } from "./IconHoverEffect";
+import React from "react";
 
 export function SideNav() {
   const session = useSession();
@@ -33,18 +40,32 @@ export function SideNav() {
           </li>
         )}
         {user == null ? (
-          <li>
-            <button onClick={() => void signIn()}>
-              <IconHoverEffect>
-                <span className="flex items-center gap-4">
-                  <VscSignIn className="h-8 w-8 fill-green-700" />
-                  <span className="hidden text-lg text-green-700 md:inline">
-                    Log In
+          <React.Fragment>
+            <li>
+              <button onClick={() => void signIn()}>
+                <IconHoverEffect>
+                  <span className="flex items-center gap-4">
+                    <VscSignIn className="h-8 w-8 fill-green-700" />
+                    <span className="hidden text-lg text-green-700 md:inline">
+                      Sign In
+                    </span>
                   </span>
-                </span>
-              </IconHoverEffect>
-            </button>
-          </li>
+                </IconHoverEffect>
+              </button>
+            </li>
+            <li>
+              <Link href={`/signUp`}>
+                <IconHoverEffect>
+                  <span className="flex items-center gap-4">
+                    <VscPerson className="h-8 w-8 fill-blue-700" />
+                    <span className="hidden text-lg text-blue-700 md:inline">
+                      Sign Up
+                    </span>
+                  </span>
+                </IconHoverEffect>
+              </Link>
+            </li>
+          </React.Fragment>
         ) : (
           <li>
             <button onClick={() => void signOut()}>

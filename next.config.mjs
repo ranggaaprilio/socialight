@@ -7,7 +7,18 @@ await import("./src/env.mjs");
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
-  images: { domains: ["cdn.discordapp.com"] },
+  // images: { domains: ["cdn.discordapp.com", "tailwindui.com"] },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "tailwindui.com",
+        port: "",
+        pathname: "signUp",
+      },
+    ],
+    domains: ["cdn.discordapp.com", "tailwindui.com"],
+  },
 
   /**
    * If you have `experimental: { appDir: true }` set, then you must comment the below `i18n` config
