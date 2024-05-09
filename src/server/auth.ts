@@ -49,6 +49,9 @@ export const authOptions: NextAuthOptions = {
         token: token,
       };
     },
+    redirect({ url, baseUrl }) {
+      return baseUrl;
+    },
   },
   adapter: PrismaAdapter(prisma),
   providers: [
@@ -106,6 +109,9 @@ export const authOptions: NextAuthOptions = {
     maxAge: 1 * 24 * 60 * 60, // 1 days
   },
   secret: env.NEXTAUTH_SECRET,
+  pages: {
+    signIn: "/signIn",
+  },
 };
 
 /**
